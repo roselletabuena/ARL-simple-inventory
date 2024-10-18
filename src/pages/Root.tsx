@@ -1,5 +1,5 @@
-import Box from "@mui/material/Box";
-import { useState, BoxProps } from "react";
+import { Box, BoxProps } from "@mui/material";
+import { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Header from "../components/Header";
 import SideNavbar from "../components/SideNavbar";
@@ -19,7 +19,7 @@ export default function Root() {
       <Header onToggle={handleDrawerToggle} />
       <SideNavbar mobileOpen={mobileOpen} onToggle={handleDrawerToggle} />
 
-      <Container component='main'>
+      <Container as='main'>
         <Outlet />
       </Container>
     </Box>
