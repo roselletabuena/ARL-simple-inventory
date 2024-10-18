@@ -7,7 +7,7 @@ import { styled } from "@mui/system";
 import { Outlet } from "react-router-dom";
 
 export default function Root() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
   const handleDrawerToggle: any = () => {
     setMobileOpen(!mobileOpen);

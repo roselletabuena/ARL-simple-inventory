@@ -1,7 +1,12 @@
+import React from "react";
 import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const Header = ({ onToggle }) => {
+type HeaderProps = {
+  onToggle: () => void;
+};
+
+const Header: React.FC<HeaderProps> = ({ onToggle }) => {
   return (
     <AppBar
       position='fixed'

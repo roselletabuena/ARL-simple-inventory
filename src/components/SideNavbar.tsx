@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Drawer,
@@ -13,7 +14,12 @@ import {
 import { Home, Info, Settings, ContactMail } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const SideNavbar = ({ mobileOpen, onToggle }) => {
+type SideNavbarProps = {
+  mobileOpen: boolean;
+  onToggle: () => void;
+};
+
+const SideNavbar: React.FC<SideNavbarProps> = ({ mobileOpen, onToggle }) => {
   const drawerWidth = 240;
 
   const pages = [
