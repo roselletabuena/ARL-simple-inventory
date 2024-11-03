@@ -1,4 +1,3 @@
-import { handleFetchToken } from "./api/auth/tokenApp";
 import { getProducts } from "./api/products";
 import Root from "./pages/Root";
 import ErrorPage from "./pages/ErrorPage";
