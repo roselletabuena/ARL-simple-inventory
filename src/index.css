@@ -44,12 +44,14 @@ body {
     display: flex;
     width: 99.9%;
     text-decoration: none;
+    color: #33372C;
 }
 
 .nav-link:visited {
     text-decoration: none;
     color: rgb(96, 96, 96);
 }
+
 
 .nav-link.active,
 .nav-link.active svg {
