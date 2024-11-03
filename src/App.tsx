@@ -9,15 +9,13 @@ import { Hub } from "aws-amplify/utils";
 
 function App() {
   useEffect(() => {
-    const hubListenerCancelToken = Hub.listen("auth", (data) => {
-      if (data.payload.event === "signedIn") {
-        handleFetchToken();
-      }
+    const hubListenerCancelToken = Hub.listen("auth", async (data) => {
       if (data.payload.event === "signedOut") {
         sessionStorage.removeItem("authToken");
       }
     });
 
+    handleFetchToken();
     return () => hubListenerCancelToken();
   }, []);
 
