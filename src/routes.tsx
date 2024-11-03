@@ -10,7 +10,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    loader: handleFetchToken,
     errorElement: <ErrorPage />,
     children: [
       {

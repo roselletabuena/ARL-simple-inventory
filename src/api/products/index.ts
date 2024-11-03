@@ -3,7 +3,7 @@ import axios from "axios";
 const ARL_ENDPOINT = import.meta.env.VITE_ARL_ENDPOINT;
 
 const headers = {
-  Authorization: localStorage.getItem("authToken"),
+  Authorization: sessionStorage.getItem("authToken"),
   "Content-Type": "application/json",
 };
 

@@ -4,11 +4,8 @@ export const handleFetchToken = async () => {
   try {
     const session = await fetchAuthSession();
 
-    if (
-      localStorage.getItem("authToken") == "" ||
-      localStorage.getItem("authToken") == null
-    ) {
-      localStorage.setItem(
+    if (!sessionStorage.getItem("authToken")) {
+      sessionStorage.setItem(
         "authToken",
         session.tokens?.idToken?.toString() || ""
       );
