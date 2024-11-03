@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ onToggle }) => {
           <MenuIcon />
         </IconButton>
         <Typography variant='h6' noWrap component='div'>
-          Responsive Sidebar
+          ARL Inventory System
         </Typography>
       </Toolbar>
     </AppBar>

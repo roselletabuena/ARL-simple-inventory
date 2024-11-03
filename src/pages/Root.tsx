@@ -15,7 +15,6 @@ export default function Root() {
 
   return (
     <Box display='flex'>
-      <CssBaseline />
       <Header onToggle={handleDrawerToggle} />
       <SideNavbar mobileOpen={mobileOpen} onToggle={handleDrawerToggle} />
 
