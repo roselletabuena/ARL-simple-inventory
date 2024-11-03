@@ -5,14 +5,16 @@ import {
   Toolbar,
   List,
   ListItem,
-  ListItemButton,
   ListItemIcon,
   ListItemText,
   Typography,
   Divider,
 } from "@mui/material";
-import { Home, Info, Settings, ContactMail } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Info } from "@mui/icons-material";
+import { NavLink } from "react-router-dom";
+import Inventory2Icon from "@mui/icons-material/Inventory2";
+import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
+import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 
 type SideNavbarProps = {
   mobileOpen: boolean;
@@ -23,10 +25,10 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ mobileOpen, onToggle }) => {
   const drawerWidth = 240;
 
   const pages = [
-    { text: "Home", icon: <Home />, path: "/" },
-    { text: "About", icon: <Info />, path: "/about" },
-    { text: "Services", icon: <Settings />, path: "/services" },
-    { text: "Contact", icon: <ContactMail />, path: "/contact" },
+    { text: "Dashboard", icon: <SpaceDashboardIcon />, path: "/" },
+    { text: "Products", icon: <Inventory2Icon />, path: "/products" },
+    { text: "Orders", icon: <ViewQuiltIcon />, path: "/orders" },
+    { text: "Receipts", icon: <Info />, path: "/about" },
   ];
 
   const drawer = (
@@ -40,10 +42,17 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ mobileOpen, onToggle }) => {
       <List>
         {pages.map((page) => (
           <ListItem key={page.text} disablePadding>
-            <ListItemButton component={Link} to={page.path}>
+            <NavLink
+              to={page.path}
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
+            >
+              {/* <ListItemButton> */}
               <ListItemIcon>{page.icon}</ListItemIcon>
               <ListItemText primary={page.text} />
-            </ListItemButton>
+              {/* </ListItemButton> */}
+            </NavLink>
           </ListItem>
         ))}
       </List>
@@ -61,7 +70,7 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ mobileOpen, onToggle }) => {
         open={mobileOpen}
         onClose={onToggle}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile
+          keepMounted: true,
         }}
         sx={{
           display: { xs: "block", sm: "none" },

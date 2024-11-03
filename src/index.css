@@ -1,3 +1,58 @@
 body {
     background-color: #FAFBFB;
 }
+
+[data-amplify-authenticator] {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.amplify-button--primary {
+    background-color: #33372C;
+}
+
+.amplify-button--link {
+    color: #33372C;
+}
+
+
+.amplify-input:focus {
+    outline: 3px solid #FF885B;
+    outline-offset: -2px;
+    box-shadow: none;
+}
+
+.amplify-field__show-password:focus {
+    outline: 3px solid #FF885B;
+    outline-offset: -2px;
+    box-shadow: none;
+}
+
+.amplify-button:focus {
+    outline: 3px solid #FF885B;
+}
+
+.nav-link {
+    padding: 10px 30px;
+    margin: 1.5px 0px;
+    display: flex;
+    width: 99.9%;
+    text-decoration: none;
+}
+
+.nav-link:visited {
+    text-decoration: none;
+    color: rgb(96, 96, 96);
+}
+
+.nav-link.active,
+.nav-link.active svg {
+    background-color: #FF885B;
+    color: white;
+}
