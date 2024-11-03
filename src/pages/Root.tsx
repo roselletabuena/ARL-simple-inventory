@@ -1,6 +1,5 @@
 import { Box, BoxProps } from "@mui/material";
 import { useState } from "react";
-import CssBaseline from "@mui/material/CssBaseline";
 import Header from "../components/Header";
 import SideNavbar from "../components/SideNavbar";
 import { styled } from "@mui/system";
