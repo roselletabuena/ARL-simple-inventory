@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import InvoiceForm from "./components/InvoiceForm";
+import InvoiceForm from "./components/Form/InvoiceForm";
 
 const InvoiceBuilder = () => {
   return (

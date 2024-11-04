@@ -5,3 +5,7 @@ export interface InvoiceItem {
   unitPrice: number;
   amount: number;
 }
+
+export interface ItemRowProps {
+  invoiceData: InvoiceItem[];
+}
