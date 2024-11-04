@@ -10,10 +10,6 @@ import {
 } from "@mui/material";
 import ItemRow from "./ItemRow";
 
-function ccyFormat(num: number) {
-  return `${num.toFixed(2)}`;
-}
-
 const InvoiceItemsTable: React.FC = () => {
   return (
     <TableContainer component={Paper} sx={{ marginTop: 2 }}>
@@ -30,11 +26,6 @@ const InvoiceItemsTable: React.FC = () => {
         </TableHead>
         <TableBody>
           <ItemRow />
-          <TableRow>
-            <TableCell colSpan={3} rowSpan={3} />
-            <TableCell>Total</TableCell>
-            <TableCell align='right'>{ccyFormat(50)}</TableCell>
-          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>

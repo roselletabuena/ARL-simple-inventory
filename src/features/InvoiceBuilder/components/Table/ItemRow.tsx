@@ -61,6 +61,10 @@ const ItemRow: React.FC = () => {
     setItems(newItems);
   };
 
+  const getTotalAmountDue = () => {
+    return items.reduce((total, item) => total + item.amount, 0);
+  };
+
   const handleSelectOnChange = (selectValue: string, rowIndex: number) => {
     const [multiplier, unitLabel] = selectValue.split("_");
     const newItems = items.map((item, index) => {
@@ -151,8 +155,20 @@ const ItemRow: React.FC = () => {
           </TableCell>
         </TableRow>
       ))}
+
+      <TableRow>
+        <TableCell colSpan={4} />
+        <TableCell>
+          <strong>Total</strong>
+        </TableCell>
+        <TableCell align='right'>{ccyFormat(getTotalAmountDue())}</TableCell>
+      </TableRow>
     </>
   );
 };
+
+function ccyFormat(num: number) {
+  return `${num.toFixed(2)}`;
+}
 
 export default ItemRow;

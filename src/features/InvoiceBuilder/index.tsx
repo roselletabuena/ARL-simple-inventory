@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import InvoiceForm from "./components/Form/InvoiceForm";
 
 const InvoiceBuilder = () => {
@@ -14,8 +14,6 @@ const InvoiceBuilder = () => {
       }}
     >
       <InvoiceForm />
-
-      <Button>PRINT INVOICE</Button>
     </Box>
   );
 };
