@@ -1,5 +1,4 @@
-import { styled } from "@mui/material/styles"; // or
-import { useLoaderData } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 
 import {
   Table,
@@ -13,8 +12,23 @@ import { Product } from "../../../types/products";
 
 import CollapsibleRow from "./CollapsibleRow";
 
+import { useQuery } from "react-query";
+import { getProducts } from "../../../api/products";
+import { Products } from "../../../types/products";
+
 export default function DataTable() {
-  const products = useLoaderData() as Product[];
+  const {
+    data: products,
+    error,
+    isLoading,
+  } = useQuery<Products, Error>("products", getProducts);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  if (products) {
+    console.log(products);
+  }
 
   return (
     <Container>
@@ -29,7 +43,7 @@ export default function DataTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product: Product) => (
+          {products?.map((product: Product) => (
             <CollapsibleRow key={product.productId} product={product} />
           ))}
         </TableBody>

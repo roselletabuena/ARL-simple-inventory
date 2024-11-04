@@ -15,6 +15,8 @@ import { NavLink } from "react-router-dom";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ReceiptIcon from "@mui/icons-material/Receipt";
 
 type SideNavbarProps = {
   mobileOpen: boolean;
@@ -26,8 +28,14 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ mobileOpen, onToggle }) => {
 
   const pages = [
     { text: "Dashboard", icon: <SpaceDashboardIcon />, path: "/" },
+    {
+      text: "Invoice Builder",
+      icon: <ReceiptIcon />,
+      path: "/invoice_builder",
+    },
     { text: "Products", icon: <Inventory2Icon />, path: "/products" },
     { text: "Orders", icon: <ViewQuiltIcon />, path: "/orders" },
+    { text: "Point of Sale", icon: <ShoppingCartIcon />, path: "/POS" },
     { text: "Receipts", icon: <Info />, path: "/about" },
   ];
 
@@ -48,10 +56,8 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ mobileOpen, onToggle }) => {
                 isActive ? "nav-link active" : "nav-link"
               }
             >
-              {/* <ListItemButton> */}
               <ListItemIcon>{page.icon}</ListItemIcon>
               <ListItemText primary={page.text} />
-              {/* </ListItemButton> */}
             </NavLink>
           </ListItem>
         ))}

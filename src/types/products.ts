@@ -13,3 +13,5 @@ export interface Product {
   totalQuantity: number;
   varieties: Variety[];
 }
+
+export type Products = Product[];

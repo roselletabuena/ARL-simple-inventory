@@ -7,9 +7,9 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const getProducts = async () => {
+export const getProducts = async (): Promise<any> => {
   try {
-    const response = await axios.get(ARL_ENDPOINT, { headers });
+    const response = await axios.get<any>(ARL_ENDPOINT, { headers });
     return response.data.products;
   } catch (error) {
     console.error("Error fetching data: ", error);

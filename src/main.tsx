@@ -5,14 +5,18 @@ import "./index.css";
 import { Amplify } from "aws-amplify";
 import outputs from "../amplify_outputs.json";
 import { Authenticator } from "@aws-amplify/ui-react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import "@aws-amplify/ui-react/styles.css";
 
+const queryClient = new QueryClient();
 Amplify.configure(outputs);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Authenticator hideSignUp>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </Authenticator>
   </React.StrictMode>
 );
