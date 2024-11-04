@@ -8,18 +8,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { InvoiceItem } from "../../types";
 import ItemRow from "./ItemRow";
-
-const invoiceData: InvoiceItem[] = [
-  {
-    qty: 1,
-    unit: "pcs",
-    article: "TABLE TOP 140x160cm",
-    unitPrice: 1120,
-    amount: 1120,
-  },
-];
 
 function ccyFormat(num: number) {
   return `${num.toFixed(2)}`;
@@ -40,7 +29,7 @@ const InvoiceItemsTable: React.FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <ItemRow invoiceData={invoiceData} />
+          <ItemRow />
           <TableRow>
             <TableCell colSpan={3} rowSpan={3} />
             <TableCell>Total</TableCell>

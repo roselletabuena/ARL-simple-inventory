@@ -10,3 +10,10 @@ export const PrimaryButton = styled(IconButton)(() => ({
     background: "#557C56",
   },
 }));
+
+export const DangerButton = styled(PrimaryButton)(() => ({
+  background: "#FF885B",
+  "&:hover": {
+    background: "#EF9C66",
+  },
+}));

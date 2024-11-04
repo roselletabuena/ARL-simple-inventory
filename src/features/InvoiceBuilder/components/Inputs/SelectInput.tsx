@@ -1,11 +1,17 @@
 import React from "react";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
-const PlainSelect: React.FC = () => {
-  const [value, setValue] = React.useState<string>("option1");
+interface PlainSelectProps {
+  handleOnChange: (value: string) => void;
+}
+
+const PlainSelect: React.FC<PlainSelectProps> = ({ handleOnChange }) => {
+  const [value, setValue] = React.useState<string>("1_Each");
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     setValue(event.target.value as string);
+
+    handleOnChange(event.target.value as string);
   };
 
   return (
@@ -21,9 +27,8 @@ const PlainSelect: React.FC = () => {
       fullWidth
       variant='outlined'
     >
-      <MenuItem value='option1'>Gallon</MenuItem>
-      <MenuItem value='option2'>Liter</MenuItem>
-      <MenuItem value='option3'>350ml</MenuItem>
+      <MenuItem value='1_Each'>Each</MenuItem>
+      <MenuItem value='12_dozen'>Dozen</MenuItem>
     </Select>
   );
 };

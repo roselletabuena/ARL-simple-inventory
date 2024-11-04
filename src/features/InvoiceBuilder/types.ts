@@ -1,6 +1,7 @@
 export interface InvoiceItem {
   qty: number;
-  unit: string;
+  unitValue: number;
+  unitName: string;
   article: string;
   unitPrice: number;
   amount: number;
