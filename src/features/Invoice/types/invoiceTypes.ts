@@ -1,3 +1,5 @@
+import { UseFormReturn } from "react-hook-form";
+
 export type Item = {
   quantity: number;
   unit: string;
@@ -15,11 +17,8 @@ export type FormValues = {
 };
 
 export interface InvoiceItemProps {
-  fields: any;
-  register: any;
-  control: any;
-  setValue: any;
-  watch: any;
-  remove: any;
-  updateAmount: (index: number, quantity: number, unit_price: number) => void;
+  register: UseFormReturn<FormValues>["register"];
+  control: UseFormReturn<FormValues>["control"];
+  setValue: UseFormReturn<FormValues>["setValue"];
+  watch: UseFormReturn<FormValues>["watch"];
 }

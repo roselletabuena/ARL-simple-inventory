@@ -1,9 +1,7 @@
 import React from "react";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useFieldArray, Controller } from "react-hook-form";
 import AddIcon from "@mui/icons-material/Add";
 import {
-  Box,
-  Grid,
   TextField,
   Table,
   TableBody,
@@ -18,42 +16,19 @@ import {
 } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { DangerButton } from "../styles/Button";
-import { FormValues } from "../types/invoiceTypes";
 import { calculateAmount, calculateTotal } from "../utils/calculate";
 import { InvoiceItemProps } from "../types/invoiceTypes";
 
-const InvoiceTable: React.FC<InvoiceItemProps />= ({
-  fields,
+const InvoiceTable: React.FC<InvoiceItemProps> = ({
   register,
   control,
   setValue,
   watch,
-  remove,
-  updateAmount,
 }) => {
-  //   const {
-  //     control,
-  //     register,
-  //     handleSubmit,
-  //     watch,
-  //     setValue,
-  //     formState: { errors },
-  //   } = useForm<FormValues>({
-  //     defaultValues: {
-  //       customer_name: "",
-  //       date: "",
-  //       address: "",
-  //       items: [
-  //         { quantity: 1, unit: "Each", articles: "", unit_price: 0, amount: 0 },
-  //       ],
-  //       total: 0,
-  //     },
-  //   });
-
-  //   const { fields, append, remove } = useFieldArray({
-  //     control,
-  //     name: "items",
-  //   });
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "items",
+  });
 
   return (
     <TableContainer component={Paper} sx={{ marginTop: 2 }}>
@@ -188,10 +163,14 @@ const InvoiceTable: React.FC<InvoiceItemProps />= ({
               <strong>Total</strong>
             </TableCell>
             <TableCell>
-              <input
+              <TextField
                 {...register("total")}
                 value={calculateTotal(watch("items")).toFixed(2)}
-                readOnly
+                variant='outlined'
+                size='small'
+                InputProps={{
+                  readOnly: true,
+                }}
               />
             </TableCell>
           </TableRow>
