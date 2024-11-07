@@ -1,5 +1,7 @@
 import { Box } from "@mui/material";
-import InvoiceForm from "./components/Form/InvoiceForm";
+// import InvoiceForm from "./components/Form/InvoiceForm";
+import SampleForm from "./components/Form/SampleForm";
+import InvoiceForm from "../Invoice/InvoiceBuilder";
 
 const InvoiceBuilder = () => {
   return (
@@ -14,6 +16,8 @@ const InvoiceBuilder = () => {
       }}
     >
       <InvoiceForm />
+
+      {/* <SampleForm /> */}
     </Box>
   );
 };
