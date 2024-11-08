@@ -16,7 +16,7 @@ export type FormValues = {
   total: number;
 };
 
-export interface InvoiceItemProps {
+export interface InvoiceTableProps {
   register: UseFormReturn<FormValues>["register"];
   control: UseFormReturn<FormValues>["control"];
   setValue: UseFormReturn<FormValues>["setValue"];
