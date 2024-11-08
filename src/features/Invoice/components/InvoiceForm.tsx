@@ -1,10 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Box, Button } from "@mui/material";
-import { FormValues } from "../types/invoiceTypes";
+import { InvoiceData } from "../types/invoiceTypes";
 import CustomerFields from "./CustomerFields";
 import InvoiceTable from "./InvoiceTable";
 import Header from "./Header";
+import { handlePrint } from "../utils/print";
 
 const InvoiceForm: React.FC = () => {
   const {
@@ -14,7 +15,7 @@ const InvoiceForm: React.FC = () => {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<InvoiceData>({
     defaultValues: {
       customer_name: "",
       date: "",
@@ -26,8 +27,8 @@ const InvoiceForm: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Form Data:", data);
+  const onSubmit = (data: InvoiceData) => {
+    handlePrint(data);
   };
 
   return (
