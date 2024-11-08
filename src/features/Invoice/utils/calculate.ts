@@ -32,6 +32,5 @@ export const calculateAmount = (
 };
 
 export const calculateTotal = (items: Item[]) => {
-  console.log("sample", items);
   return items.reduce((sum, item) => sum + (item.amount ?? 0), 0);
 };
