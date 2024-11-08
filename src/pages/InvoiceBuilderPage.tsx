@@ -1,4 +1,4 @@
-import InvoiceBuilder from "../features/InvoiceBuilder";
+import InvoiceBuilder from "../features/Invoice/InvoiceBuilder";
 
 const InvoiceBuilderPage = () => {
   return <InvoiceBuilder />;
