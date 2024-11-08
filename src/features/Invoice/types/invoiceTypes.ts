@@ -8,7 +8,7 @@ export type Item = {
   amount: number;
 };
 
-export type FormValues = {
+export type InvoiceData = {
   customer_name: string;
   date: string;
   address: string;
@@ -17,8 +17,8 @@ export type FormValues = {
 };
 
 export interface InvoiceTableProps {
-  register: UseFormReturn<FormValues>["register"];
-  control: UseFormReturn<FormValues>["control"];
-  setValue: UseFormReturn<FormValues>["setValue"];
-  watch: UseFormReturn<FormValues>["watch"];
+  register: UseFormReturn<InvoiceData>["register"];
+  control: UseFormReturn<InvoiceData>["control"];
+  setValue: UseFormReturn<InvoiceData>["setValue"];
+  watch: UseFormReturn<InvoiceData>["watch"];
 }
