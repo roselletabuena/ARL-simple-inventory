@@ -35,18 +35,34 @@ const InvoiceTable: React.FC<InvoiceItemProps> = ({
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell align='center'>QTY</TableCell>
-            <TableCell align='center'>UNIT</TableCell>
-            <TableCell align='center'>ARTICLES</TableCell>
-            <TableCell align='center'>Unit Price</TableCell>
-            <TableCell align='center'>AMOUNT</TableCell>
             <TableCell align='center' width={1} />
+            <TableCell align='center' width={100}>
+              QTY
+            </TableCell>
+            <TableCell align='center' width={150}>
+              UNIT
+            </TableCell>
+            <TableCell align='center'>ARTICLES</TableCell>
+            <TableCell align='center' width={120}>
+              Unit Price
+            </TableCell>
+            <TableCell align='center' width={120}>
+              AMOUNT
+            </TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
           {fields.map((item, index) => (
             <TableRow key={item.id}>
+              <TableCell align='center'>
+                <DangerButton
+                  onClick={() => remove(index)}
+                  aria-label='Remove Item'
+                >
+                  <RemoveIcon />
+                </DangerButton>
+              </TableCell>
               <TableCell align='center'>
                 <Controller
                   control={control}
@@ -60,7 +76,11 @@ const InvoiceTable: React.FC<InvoiceItemProps> = ({
                       onChange={(e) => {
                         const quantity = Number(e.target.value);
                         const unit_price = watch(`items.${index}.unit_price`);
-                        const amount = calculateAmount(quantity, unit_price);
+                        const amount = calculateAmount(
+                          quantity,
+                          watch(`items.${index}.unit`),
+                          unit_price
+                        );
                         setValue(`items.${index}.amount`, amount);
                         setValue("total", calculateTotal(watch("items")));
                         field.onChange(e);
@@ -71,18 +91,38 @@ const InvoiceTable: React.FC<InvoiceItemProps> = ({
                   )}
                 />
               </TableCell>
-              <TableCell align='center'>
-                <Select
-                  {...register(`items.${index}.unit`, {
-                    required: "Unit is required",
-                  })}
-                  defaultValue='Each'
-                  size='small'
-                >
-                  <MenuItem value='Each'>Each</MenuItem>
-                  <MenuItem value='Kg'>Kg</MenuItem>
-                  <MenuItem value='Liter'>Liter</MenuItem>
-                </Select>
+              <TableCell>
+                <Controller
+                  control={control}
+                  name={`items.${index}.unit`}
+                  rules={{ required: "unit is required", min: 1 }}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      fullWidth
+                      value={field.value || "Each"}
+                      size='small'
+                      onChange={(e) => {
+                        const unit_price = watch(`items.${index}.unit_price`);
+                        const quantity = watch(`items.${index}.quantity`);
+                        const unit_factor = e.target.value;
+                        const amount = calculateAmount(
+                          quantity,
+                          unit_factor,
+                          unit_price
+                        );
+
+                        setValue(`items.${index}.amount`, amount);
+                        setValue("total", calculateTotal(watch("items")));
+                        field.onChange(e);
+                      }}
+                    >
+                      <MenuItem value='Each'>Each</MenuItem>
+                      <MenuItem value='Kg'>Kg</MenuItem>
+                      <MenuItem value='Liter'>Liter</MenuItem>
+                    </Select>
+                  )}
+                />
               </TableCell>
               <TableCell align='center'>
                 <TextField
@@ -91,6 +131,7 @@ const InvoiceTable: React.FC<InvoiceItemProps> = ({
                   })}
                   placeholder='Articles'
                   variant='outlined'
+                  fullWidth
                   size='small'
                 />
               </TableCell>
@@ -107,8 +148,12 @@ const InvoiceTable: React.FC<InvoiceItemProps> = ({
                       onChange={(e) => {
                         const unit_price = Number(e.target.value);
                         const quantity = watch(`items.${index}.quantity`);
-                        const amount = calculateAmount(quantity, unit_price);
-                        setValue(`items.${index}.amount`, amount);
+                        const amount = calculateAmount(
+                          quantity,
+                          watch(`items.${index}.unit`),
+                          unit_price
+                        );
+                        setValue(`items.${index}.amount`, Number(amount));
                         setValue("total", calculateTotal(watch("items")));
                         field.onChange(e);
                       }}
@@ -122,21 +167,13 @@ const InvoiceTable: React.FC<InvoiceItemProps> = ({
                 <TextField
                   {...register(`items.${index}.amount`)}
                   placeholder='Amount'
-                  value={(watch(`items.${index}.amount`) || 0).toFixed(2)}
+                  value={Number(watch(`items.${index}.amount`) || 0).toFixed(2)}
                   variant='outlined'
                   size='small'
                   InputProps={{
                     readOnly: true,
                   }}
                 />
-              </TableCell>
-              <TableCell align='center'>
-                <DangerButton
-                  onClick={() => remove(index)}
-                  aria-label='Remove Item'
-                >
-                  <RemoveIcon />
-                </DangerButton>
               </TableCell>
             </TableRow>
           ))}
@@ -162,10 +199,10 @@ const InvoiceTable: React.FC<InvoiceItemProps> = ({
             <TableCell>
               <strong>Total</strong>
             </TableCell>
-            <TableCell>
+            <TableCell colSpan={2}>
               <TextField
                 {...register("total")}
-                value={calculateTotal(watch("items")).toFixed(2)}
+                value={Number(calculateTotal(watch("items")) || 0).toFixed(2)}
                 variant='outlined'
                 size='small'
                 InputProps={{

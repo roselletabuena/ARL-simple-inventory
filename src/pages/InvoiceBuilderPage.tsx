@@ -1,14 +1,7 @@
-import InvoiceForm from "../features/Invoice/InvoiceForm";
-import { Box } from "@mui/material";
+import InvoiceBuilder from "../features/Invoice/InvoiceBuilder";
 
 const InvoiceBuilderPage = () => {
-  return (
-    <Box
-      sx={{ padding: 2, maxWidth: 900, margin: "auto", background: "white" }}
-    >
-      <InvoiceForm />
-    </Box>
-  );
+  return <InvoiceBuilder />;
 };
 
 export default InvoiceBuilderPage;
