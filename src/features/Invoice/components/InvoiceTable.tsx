@@ -30,7 +30,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
     name: "items",
   });
 
-  const articlesOptions = products.map((product) => product.article);
+  const articlesOptions = products?.map((product) => product.article) || [];
 
   return (
     <InvoiceLayout>
@@ -120,10 +120,25 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
                       (item) => item.article === value
                     );
 
-                    setValue(
-                      `items.${index}.unit_price`,
-                      Number(foundItem?.price || 0)
+                    let unit_price = foundItem?.price || 0;
+                    let quantity = watch(`items.${index}.quantity`);
+                    let unit_factor = watch(`items.${index}.unit`);
+
+                    if (value == null) {
+                      unit_price = 0;
+                      quantity = 0;
+                    }
+
+                    const amount = calculateAmount(
+                      quantity,
+                      unit_factor,
+                      unit_price
                     );
+
+                    setValue(`items.${index}.unit_price`, unit_price);
+                    setValue(`items.${index}.amount`, Number(amount));
+                    setValue("total", calculateTotal(watch("items")));
+
                     field.onChange(value);
                   }}
                   renderInput={(params) => (

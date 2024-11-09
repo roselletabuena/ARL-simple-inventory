@@ -23,7 +23,7 @@ export interface InvoiceTableProps {
   setValue: UseFormReturn<InvoiceData>["setValue"];
   watch: UseFormReturn<InvoiceData>["watch"];
   errors: UseFormReturn<InvoiceData>["formState"]["errors"];
-  products: TypeaheadProduct[];
+  products: TypeaheadProduct[] | undefined;
 }
 
 export type CustomerFieldsProps = {
@@ -32,5 +32,5 @@ export type CustomerFieldsProps = {
 };
 
 export type InvoiceFormProps = {
-  products: any;
+  products: TypeaheadProduct[] | undefined;
 };

@@ -9,16 +9,11 @@ const InvoiceBuilder = () => {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  if (products) {
-    console.log(products);
-  }
   return (
     <Box
       sx={{ padding: 2, maxWidth: 900, margin: "auto", background: "white" }}
     >
-      {(products as TypeaheadProduct[]) ? (
-        <InvoiceForm products={products} />
-      ) : null}
+      <InvoiceForm products={products as TypeaheadProduct[]} />
     </Box>
   );
 };

@@ -7,6 +7,7 @@ import InvoiceTable from "./InvoiceTable";
 import Header from "./Header";
 import { handlePrint } from "../utils/print";
 import { InvoiceFormProps } from "../types/invoiceTypes";
+import { TypeaheadProduct } from "../../../types/products";
 
 const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
   const {
@@ -45,7 +46,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
           setValue={setValue}
           watch={watch}
           errors={errors}
-          products={products}
+          products={products as TypeaheadProduct[]}
         />
 
         <Box
