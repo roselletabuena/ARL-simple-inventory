@@ -14,4 +14,11 @@ export interface Product {
   varieties: Variety[];
 }
 
+export type TypeaheadProduct = {
+  article: string;
+  price: number;
+};
+
+export type FormatType = "full" | "typeahead";
+
 export type Products = Product[];
