@@ -23,6 +23,7 @@ const useProducts = (format: FormatType = "full") => {
         }
         return data as Products;
       },
+      refetchOnWindowFocus: false,
     }
   );
 };
