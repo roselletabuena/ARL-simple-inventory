@@ -6,8 +6,9 @@ import CustomerFields from "./CustomerFields";
 import InvoiceTable from "./InvoiceTable";
 import Header from "./Header";
 import { handlePrint } from "../utils/print";
+import { InvoiceFormProps } from "../types/invoiceTypes";
 
-const InvoiceForm: React.FC = () => {
+const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
   const {
     control,
     register,
@@ -43,6 +44,8 @@ const InvoiceForm: React.FC = () => {
           control={control}
           setValue={setValue}
           watch={watch}
+          errors={errors}
+          products={products}
         />
 
         <Box

@@ -2,6 +2,7 @@ import React from "react";
 import { useFieldArray, Controller } from "react-hook-form";
 import AddIcon from "@mui/icons-material/Add";
 import {
+  Autocomplete,
   TextField,
   TableCell,
   TableRow,
@@ -14,17 +15,22 @@ import { DangerButton } from "../styles/Button";
 import { calculateAmount, calculateTotal } from "../utils/calculate";
 import { InvoiceTableProps } from "../types/invoiceTypes";
 import InvoiceLayout from "./InvoiceTableLayout";
+import { TypeaheadProduct } from "../../../types/products";
 
 const InvoiceTable: React.FC<InvoiceTableProps> = ({
   register,
   control,
   setValue,
   watch,
+  errors,
+  products,
 }) => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "items",
   });
+
+  const articlesOptions = products.map((product) => product.article);
 
   return (
     <InvoiceLayout>
@@ -100,14 +106,39 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
             />
           </TableCell>
           <TableCell align='center'>
-            <TextField
-              {...register(`items.${index}.articles`, {
-                required: "Article description is required",
-              })}
-              placeholder='Articles'
-              variant='outlined'
-              fullWidth
-              size='small'
+            <Controller
+              name={`items.${index}.articles`}
+              control={control}
+              rules={{ required: "Article description is required" }}
+              render={({ field }) => (
+                <Autocomplete
+                  {...field}
+                  freeSolo
+                  options={articlesOptions}
+                  onChange={(_, value) => {
+                    const foundItem = (products as TypeaheadProduct[]).find(
+                      (item) => item.article === value
+                    );
+
+                    setValue(
+                      `items.${index}.unit_price`,
+                      Number(foundItem?.price || 0)
+                    );
+                    field.onChange(value);
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder='Articles'
+                      variant='outlined'
+                      fullWidth
+                      size='small'
+                      error={!!errors.items?.[index]?.articles}
+                      helperText={errors.items?.[index]?.articles?.message}
+                    />
+                  )}
+                />
+              )}
             />
           </TableCell>
           <TableCell align='center'>

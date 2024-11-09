@@ -1,12 +1,11 @@
 import { Box, Grid, TextField } from "@mui/material";
 import React from "react";
+import { CustomerFieldsProps } from "../types/invoiceTypes";
 
-type Data = {
-  register: any;
-  errors: any;
-};
-
-const CustomerFields: React.FC<Data> = ({ register, errors }) => {
+const CustomerFields: React.FC<CustomerFieldsProps> = ({
+  register,
+  errors,
+}) => {
   return (
     <Box>
       <Grid container spacing={2}>
