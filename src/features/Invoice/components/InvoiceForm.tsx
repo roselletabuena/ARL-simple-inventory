@@ -15,6 +15,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
     register,
     handleSubmit,
     watch,
+    reset,
     setValue,
     formState: { errors },
   } = useForm<InvoiceData>({
@@ -31,6 +32,10 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
 
   const onSubmit = (data: InvoiceData) => {
     handlePrint(data);
+  };
+
+  const onReset = () => {
+    reset();
   };
 
   return (
@@ -52,7 +57,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
         <Box
           sx={{ display: "flex", justifyContent: "flex-end", gap: 2, pt: 2 }}
         >
-          <Button variant='contained' type='button'>
+          <Button variant='contained' type='button' onClick={onReset}>
             Reset Form
           </Button>
           <Button variant='contained' type='submit'>

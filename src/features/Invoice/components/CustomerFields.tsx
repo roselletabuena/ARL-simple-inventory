@@ -15,9 +15,7 @@ const CustomerFields: React.FC<CustomerFieldsProps> = ({
             variant='standard'
             fullWidth
             size='small'
-            {...register("customer_name", {
-              required: "Customer name is required",
-            })}
+            {...register("customer_name")}
           />
 
           {errors.customer_name && <span>{errors.customer_name.message}</span>}
@@ -42,7 +40,7 @@ const CustomerFields: React.FC<CustomerFieldsProps> = ({
             size='small'
             multiline
             rows={2}
-            {...register("address", { required: "Address is required" })}
+            {...register("address")}
           />
           {errors.address && <span>{errors.address.message}</span>}
         </Grid>

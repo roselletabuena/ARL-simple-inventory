@@ -22,7 +22,6 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
   control,
   setValue,
   watch,
-  errors,
   products,
 }) => {
   const { fields, append, remove } = useFieldArray({
@@ -148,8 +147,8 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
                       variant='outlined'
                       fullWidth
                       size='small'
-                      error={!!errors.items?.[index]?.articles}
-                      helperText={errors.items?.[index]?.articles?.message}
+                      // error={!!errors.items?.[index]?.articles}
+                      // helperText=z{errors.items?.[index]?.articles?.message}
                     />
                   )}
                 />
