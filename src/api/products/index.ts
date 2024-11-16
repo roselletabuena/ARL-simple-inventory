@@ -7,6 +7,8 @@ const headers = {
   "Content-Type": "application/json",
 };
 
+console.log(sessionStorage.getItem("authToken"));
+
 export const getProducts = async (): Promise<any> => {
   try {
     const response = await axios.get<any>(ARL_ENDPOINT, { headers });
