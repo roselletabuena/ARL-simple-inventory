@@ -8,31 +8,21 @@ import { handleFetchToken } from "./api/auth/tokenApp";
 import { Hub } from "aws-amplify/utils";
 
 function App() {
-  const [loadApp, setIsLoadApp] = useState(false);
-
   useEffect(() => {
-    handleFetchToken();
-
     const hubListenerCancelToken = Hub.listen("auth", async (data) => {
-      if (data.payload.event === "signedIn") {
-        handleFetchToken();
-
-        setIsLoadApp(true);
-      }
       if (data.payload.event === "signedOut") {
         sessionStorage.removeItem("authToken");
-
-        setIsLoadApp(false);
       }
     });
 
+    handleFetchToken();
     return () => hubListenerCancelToken();
   }, []);
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        {loadApp ? <div>Loading...</div> : <RouterProvider router={router} />}
+        <RouterProvider router={router} />
       </ThemeProvider>
     </>
   );
