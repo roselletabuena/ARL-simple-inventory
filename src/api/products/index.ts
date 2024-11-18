@@ -1,9 +1,9 @@
 import axios from "axios";
 import { Products } from "../../types/products";
 
-const ARL_ENDPOINT = import.meta.env.VITE_ARL_ENDPOINT;
+const ARL_ENDPOINT = import.meta.env.VITE_ARL_ENDPOINT + "/products";
 
-export const getProducts = async (): Promise<any> => {
+export const getProducts = async (): Promise<Products> => {
   const headers = {
     Authorization: sessionStorage.getItem("authToken"),
     "Content-Type": "application/json",

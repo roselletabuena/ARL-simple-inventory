@@ -20,11 +20,9 @@ function App() {
   }, []);
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   );
 }
 
