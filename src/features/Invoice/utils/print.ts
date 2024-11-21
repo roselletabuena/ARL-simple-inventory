@@ -18,7 +18,7 @@ export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
                             }
                             table {
                                 width: 100%;
-                                font-size: 12px;
+                                font-size: 14px;
                                 border-collapse: collapse;
                             }
                             th, td {
@@ -42,7 +42,7 @@ export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
                     </head>
                     <body onload="window.print(); window.close();">
                         <div>
-                            <h2 style="text-align: center;">${name}</h2>
+                            <h2 style="text-align: center; margin-bottom: 2px">${name}</h2>
                             <p>Customer: ${receipt.customer_name}</p>
                             <p>Date: ${receipt.date}</p>
                             <p>Address: ${receipt.address}</p>
