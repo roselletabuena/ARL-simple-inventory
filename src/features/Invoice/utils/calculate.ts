@@ -2,7 +2,7 @@ import { Item } from "../types/invoiceTypes";
 import { Unit } from "../../../types/user-configs";
 
 const units: { [key: string]: number } = {
-  Each: 1,
+  ea: 1,
   Kg: 12,
   Liter: 3,
 };

@@ -84,7 +84,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
                 <Select
                   {...field}
                   fullWidth
-                  value={field.value || "each"}
+                  value={field.value || "ea"}
                   size='small'
                   onChange={(e) => {
                     const unit_price = watch(`items.${index}.unit_price`);
@@ -210,7 +210,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
             onClick={() =>
               append({
                 quantity: 1,
-                unit: "each",
+                unit: "ea",
                 articles: "",
                 unit_price: 0,
                 amount: 0,
