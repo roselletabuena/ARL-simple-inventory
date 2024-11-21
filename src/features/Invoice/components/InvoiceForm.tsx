@@ -8,8 +8,11 @@ import Header from "./Header";
 import { handlePrint } from "../utils/print";
 import { InvoiceFormProps } from "../types/invoiceTypes";
 import { TypeaheadProduct } from "../../../types/products";
+import { useInvoiceContext } from "../hooks/InvoiceContext";
 
 const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
+  const { invoiceConfig } = useInvoiceContext();
+
   const {
     control,
     register,
@@ -31,7 +34,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
   });
 
   const onSubmit = (data: InvoiceData) => {
-    handlePrint(data);
+    handlePrint(data, invoiceConfig?.name);
   };
 
   const onReset = () => {

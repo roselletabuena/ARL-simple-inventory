@@ -1,6 +1,6 @@
 import { InvoiceData } from "../types/invoiceTypes";
 
-export const handlePrint = (receipt: InvoiceData) => {
+export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
   const printWindow = window.open("", "_blank");
   if (printWindow) {
     printWindow.document.write(`
@@ -42,7 +42,7 @@ export const handlePrint = (receipt: InvoiceData) => {
                     </head>
                     <body onload="window.print(); window.close();">
                         <div>
-                            <h2 style="text-align: center;">Receipt</h2>
+                            <h2 style="text-align: center;">${name}</h2>
                             <p>Customer: ${receipt.customer_name}</p>
                             <p>Date: ${receipt.date}</p>
                             <p>Address: ${receipt.address}</p>
