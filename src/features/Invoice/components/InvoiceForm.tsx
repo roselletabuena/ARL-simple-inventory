@@ -27,7 +27,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
       date: new Date().toISOString().split("T")[0],
       address: "",
       items: [
-        { quantity: 1, unit: "Each", articles: "", unit_price: 0, amount: 0 },
+        { quantity: 1, unit: "each", articles: "", unit_price: 0, amount: 0 },
       ],
       total: 0,
     },

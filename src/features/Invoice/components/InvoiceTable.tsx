@@ -12,10 +12,11 @@ import {
 } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { DangerButton } from "../styles/Button";
-import { calculateAmount, calculateTotal } from "../utils/calculate";
+import { calculateTotal, computeByUnit } from "../utils/calculate";
 import { InvoiceTableProps } from "../types/invoiceTypes";
 import InvoiceLayout from "./InvoiceTableLayout";
 import { TypeaheadProduct } from "../../../types/products";
+import { useInvoiceContext } from "../hooks/InvoiceContext";
 
 const InvoiceTable: React.FC<InvoiceTableProps> = ({
   register,
@@ -24,10 +25,13 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
   watch,
   products,
 }) => {
+  const { invoiceConfig } = useInvoiceContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "items",
   });
+
+  const calculateAmount = computeByUnit(invoiceConfig.units);
 
   const articlesOptions = products?.map((product) => product.article) || [];
 
@@ -80,7 +84,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
                 <Select
                   {...field}
                   fullWidth
-                  value={field.value || "Each"}
+                  value={field.value || "each"}
                   size='small'
                   onChange={(e) => {
                     const unit_price = watch(`items.${index}.unit_price`);
@@ -97,9 +101,11 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
                     field.onChange(e);
                   }}
                 >
-                  <MenuItem value='Each'>Each</MenuItem>
-                  <MenuItem value='Kg'>Kg</MenuItem>
-                  <MenuItem value='Liter'>Liter</MenuItem>
+                  {invoiceConfig.units.map((item) => (
+                    <MenuItem key={item.name} value={item.name}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
                 </Select>
               )}
             />
@@ -204,7 +210,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
             onClick={() =>
               append({
                 quantity: 1,
-                unit: "Each",
+                unit: "each",
                 articles: "",
                 unit_price: 0,
                 amount: 0,
