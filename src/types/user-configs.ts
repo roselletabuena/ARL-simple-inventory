@@ -1,5 +1,6 @@
-interface Unit {
+export interface Unit {
   name: string;
+  displayName: string;
   value: number;
 }
 

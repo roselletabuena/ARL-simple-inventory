@@ -103,7 +103,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({
                 >
                   {invoiceConfig.units.map((item) => (
                     <MenuItem key={item.name} value={item.name}>
-                      {item.name}
+                      {item.displayName}
                     </MenuItem>
                   ))}
                 </Select>
