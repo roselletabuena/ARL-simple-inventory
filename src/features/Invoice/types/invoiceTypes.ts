@@ -10,7 +10,9 @@ export type Item = {
 };
 
 export type InvoiceData = {
+  name: string;
   customer_name: string;
+  phone_number: string;
   date: string;
   address: string;
   items: Item[];

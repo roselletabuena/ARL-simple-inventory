@@ -1,6 +1,10 @@
 import { InvoiceData } from "../types/invoiceTypes";
+import { InvoiceConfig } from "../../../types/user-configs";
 
-export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
+export const handlePrint = (
+  receipt: InvoiceData,
+  invoiceConfig: InvoiceConfig
+) => {
   const printWindow = window.open("", "_blank");
   if (printWindow) {
     printWindow.document.write(`
@@ -8,6 +12,11 @@ export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
                     <head>
                         <title>Receipt</title>
                         <style>
+
+                            p {
+                                font-size: 16px;
+                            }
+                            
                             body {
                                 width: 80mm;
                                 font-family: Arial, sans-serif;
@@ -18,7 +27,7 @@ export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
                             }
                             table {
                                 width: 100%;
-                                font-size: 14px;
+                                font-size: 18px;
                                 border-collapse: collapse;
                             }
                             th, td {
@@ -35,14 +44,24 @@ export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
                             }
                             .total {
                                 text-align: right;
-                                font-size: 14px;
+                                font-size: 25px;
                                 font-weight: bold;
                             }
                         </style>
                     </head>
                     <body onload="window.print(); window.close();">
                         <div>
-                            <h2 style="text-align: center; margin-bottom: 2px">${name}</h2>
+                            <div style='text-align: "center"; margin-bottom: 20px;'>
+                                <h2 style="text-align: center; margin-bottom: 2px">${
+                                  invoiceConfig.name
+                                }</h2>
+                                <p style="text-align: center">${
+                                  invoiceConfig.address
+                                }</p>
+                                <p style="text-align: center">${
+                                  invoiceConfig.phone_number
+                                }</p>
+                            </div>
                             <p>Customer: ${receipt.customer_name}</p>
                             <p>Date: ${receipt.date}</p>
                             <p>Address: ${receipt.address}</p>
@@ -51,9 +70,8 @@ export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
                                 <thead>
                                     <tr>
                                         <th>Qty</th>
-                                        <th>Unit</th>
                                         <th>Item</th>
-                                        <th>Unit Price</th>
+                                        <th>Price</th>
                                         <th>Amount</th>
                                     </tr>
                                 </thead>
@@ -62,8 +80,9 @@ export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
                                       .map(
                                         (item) => `
                                         <tr>
-                                            <td>${item.quantity}</td>
-                                            <td>${item.unit}</td>
+                                            <td>${item.quantity}(${
+                                          item.unit
+                                        })</td>
                                             <td>${item.articles}</td>
                                             <td>${item.unit_price.toFixed(
                                               2
@@ -83,6 +102,6 @@ export const handlePrint = (receipt: InvoiceData, name: string | undefined) => {
                     </body>
                 </html>
             `);
-    printWindow.document.close();
+    // printWindow.document.close();
   }
 };

@@ -34,7 +34,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ products }) => {
   });
 
   const onSubmit = (data: InvoiceData) => {
-    handlePrint(data, invoiceConfig?.name);
+    handlePrint(data, invoiceConfig);
   };
 
   const onReset = () => {
