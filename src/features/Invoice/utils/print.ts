@@ -1,5 +1,6 @@
 import { InvoiceData } from "../types/invoiceTypes";
 import { InvoiceConfig } from "../../../types/user-configs";
+import logo from "../../../assets/logo.png";
 
 export const handlePrint = (
   receipt: InvoiceData,
@@ -51,7 +52,13 @@ export const handlePrint = (
                     </head>
                     <body onload="window.print(); window.close();">
                         <div>
+                        
+                            <div style='text-align: center; margin-bottom: 10px;  filter: grayscale(100%);'>
+                                <img src='${logo}' style='width: 80px; display: block; margin: auto;'/> 
+                            </div>
+
                             <div style='text-align: "center"; margin-bottom: 20px;'>
+
                                 <h2 style="text-align: center; margin-bottom: 2px">${
                                   invoiceConfig.name
                                 }</h2>

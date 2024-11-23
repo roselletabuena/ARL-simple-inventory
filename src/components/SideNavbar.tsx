@@ -10,12 +10,8 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { Info } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
-import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
-import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 
 type SideNavbarProps = {
@@ -27,16 +23,15 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ mobileOpen, onToggle }) => {
   const drawerWidth = 240;
 
   const pages = [
-    { text: "Dashboard", icon: <SpaceDashboardIcon />, path: "/" },
     {
       text: "Invoice Builder",
       icon: <ReceiptIcon />,
       path: "/invoice_builder",
     },
     { text: "Products", icon: <Inventory2Icon />, path: "/products" },
-    { text: "Orders", icon: <ViewQuiltIcon />, path: "/orders" },
-    { text: "Point of Sale", icon: <ShoppingCartIcon />, path: "/POS" },
-    { text: "Receipts", icon: <Info />, path: "/about" },
+    // { text: "Orders", icon: <ViewQuiltIcon />, path: "/orders" },
+    // { text: "Point of Sale", icon: <ShoppingCartIcon />, path: "/POS" },
+    // { text: "Receipts", icon: <Info />, path: "/about" },
   ];
 
   const drawer = (
