@@ -102,6 +102,6 @@ export const handlePrint = (
                     </body>
                 </html>
             `);
-    // printWindow.document.close();
+    printWindow.document.close();
   }
 };
