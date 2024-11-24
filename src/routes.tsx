@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import ProductsPage from "./pages/ProductsPage";
 import InvoiceBuilderPage from "./pages/InvoiceBuilderPage";
+import ImageResizerPage from "./pages/ImageResizerPage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <ProductsPage />,
+      },
+      {
+        path: "/image_resizer",
+        element: <ImageResizerPage />,
       },
     ],
   },
