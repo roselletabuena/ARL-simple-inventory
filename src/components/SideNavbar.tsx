@@ -13,6 +13,7 @@ import {
 import { NavLink } from "react-router-dom";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import ReceiptIcon from "@mui/icons-material/Receipt";
+import CameraRollIcon from "@mui/icons-material/CameraRoll";
 
 type SideNavbarProps = {
   mobileOpen: boolean;
@@ -29,9 +30,7 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ mobileOpen, onToggle }) => {
       path: "/invoice_builder",
     },
     { text: "Products", icon: <Inventory2Icon />, path: "/products" },
-    // { text: "Orders", icon: <ViewQuiltIcon />, path: "/orders" },
-    // { text: "Point of Sale", icon: <ShoppingCartIcon />, path: "/POS" },
-    // { text: "Receipts", icon: <Info />, path: "/about" },
+    { text: "Image Resizer", icon: <CameraRollIcon />, path: "/image_resizer" },
   ];
 
   const drawer = (

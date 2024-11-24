@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ onToggle }) => {
           <MenuIcon />
         </IconButton>
         <Typography variant='h6' noWrap component='div'>
-          ARL Inventory System
+          My Devfolio
         </Typography>
 
         <Box
