@@ -3,7 +3,7 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { postImage } from "../../api/upload";
 
 const ImageResizer = () => {
-  const { register, handleSubmit, reset } = useForm<FieldValues>();
+  const { register, handleSubmit } = useForm<FieldValues>();
 
   const handleOnSubmit: SubmitHandler<FieldValues> = async (data) => {
     // Access the selected file
